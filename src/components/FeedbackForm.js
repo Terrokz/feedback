@@ -42,10 +42,13 @@ function FeedbackForm() {
                 text,
                 rating,
             }
-            if(feedbackEdit.edit === true){
-                updateFeedback(feedbackEdit.item.id,newFeedback)    
-            }else{addFeedback(newFeedback)}
-    
+
+        if(feedbackEdit.edit === true){
+            updateFeedback(feedbackEdit.item.id,newFeedback)    
+        }else{addFeedback(newFeedback)}
+
+            setbtnDisabled(true)
+            setRating(10)   
             setText('')
         }
     }
@@ -54,10 +57,11 @@ function FeedbackForm() {
     <Card>
         <form onSubmit={handleSubmit} >
             <h2>How would you rate this service?</h2>
-            <RatingSelect select={(rating) => setRating(rating) }/>
+            <RatingSelect select={setRating} selected={rating} />
             <div className='input-group'>
                 <input 
-                onChange={handleTextChange} type="text" 
+                onChange={handleTextChange}
+                type="text" 
                 placeholder='Write a review' 
                 value={text}
                 />
